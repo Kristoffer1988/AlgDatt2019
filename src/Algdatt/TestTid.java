@@ -1,3 +1,5 @@
+package Algdatt;
+
 import java.util.*;
 
 public class TestTid

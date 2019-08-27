@@ -1,0 +1,170 @@
+Oppgaver Algdatt
+
+1.1.2
+
+  public static int maks(int[] a)  // a er en heltallstabell
+  {
+    if (a.length < 1)
+      throw new java.util.NoSuchElementException("Tabellen a er tom!");
+
+    int m = 0;  // indeks til foreløpig største verdi
+
+    for (int i = 1; i < a.length; i++) // obs: starter med i = 1
+    {
+      if (a[i] > a[m]) m = i;  // indeksen oppdateres
+    }
+
+    return m;  // returnerer indeksen/posisjonen til største verdi
+
+  } // maks
+
+1.)
+
+8	4	17	10	6	20	1	11	15	3	18	9	2	7	19
+0	1	2	3	4	5	6	7	8	9	10	11	12	13	14
+
+Hvis i har en MIN-metode vil den returnere 0 i dette tilfellet på grunn av initialiseringen
+til variabelen:
+
+int m = 0;  // indeks til foreløpig største verdi
+
+Dette blir feil da det laveste tallet er 1.
+
+2.)
+
+  public static int min(int[] a)  // a er en heltallstabell
+  {
+    if (a.length < 1)
+      throw new java.util.NoSuchElementException("Tabellen a er tom!");
+
+    int min_value = a[0];  // Fra oppgave 1 lærte jeg at man ikke burde bruke random tall som startverdi
+
+    for (int i = 1; i < a.length; i++) // obs: starter med i = 1
+    {
+      if (a[i] < a[m]) m = i;  // indeksen oppdateres
+    }
+
+    return m;  // returnerer indeksen/posisjonen til minste verdi
+
+  } // min
+
+3.)
+
+Hvis man vil at den siste posisjonen på den største skal returneres må man ta a[i] >= 'max_value'
+
+1.1.3
+
+REGLER FOR OPERASJONER MED EKSEMPEL
+
+-en tilordning - en variabel får en verdi
+-en tabelloperasjon - en tabellverdi aksesseres
+-en sammenligning - to verdier sammenlignes
+-en regneoperasjon - f.eks. en addisjon av to tall
+-En operasjon er sammensatt hvis den består av flere grunnlegggende operasjoner. F.eks. er  if (a[i] > a[m]) sammensatt av to tabelloperasjoner og én sammenligning.
+
+Vi kan finne en formel for en algoritmes effektivitet ved å telle opp antallet ganger det utføres en grunnleggende operasjon. Ta maks-metoden i Programkode 1.1.2 som eksempel. Anta at tabellen a har n verdier, dvs. a.length er lik n. Vi får flg. regnskap:
+
+-Det utføres én sammenligning for å avgjøre om tabellen har innhold:  (1)
+-Det opprettes en hjelpevariabel ?m? som får 0 som startverdi:  (1)
+-Løkkevariabelen ?i? opprettes og får 1 som startverdi:  (1)
+-I  for-løkken utføres sammenligningen  i < a.length  n ganger:  (n)
+-I  for-løkken utføres addisjonen  i++   n – 1 ganger:  (n – 1)
+Setningen  if (a[i] > a[m]) utføres n – 1 ganger. Den består av to tabelloperasjoner og én sammenligning:  3(n – 1)
+-Tilordningen  m = i  utføres hver gang  a[i] > a[m] er sann:  (x)
+Verdien til m returneres:  (1)
+
+Sum: 1 + 1 + 1 + n + n – 1 + 3(n – 1) + x + 1 = 5n + x
+
+1.)
+
+Noen algoritmer til sortering:
+
+Utvalgssortering (eng: selection sort)
+Innsettingssortering (eng: insertion sort)
+Boblesortering (eng: bubble sort)
+Kvikksortering (eng: quick sort)
+Flettesortering (eng: merge sort)
+Heapsortering (eng: heap sort)
+Grunntallssortering (eng: radix sort)
+
+2.)
+
+  public static int maks(int[] a)  // a er en heltallstabell
+  {
+    if (a.length < 1) 
+      throw new java.util.NoSuchElementException("Tabellen a er tom!");
+
+    int m = 0;  // indeks til foreløpig største verdi
+
+    for (int i = 1; i < a.length; i++) // obs: starter med i = 1
+    {
+      if (a[i] > a[m]) m = i;  // indeksen oppdateres
+    }
+
+    return m;  // returnerer indeksen/posisjonen til største verdi
+
+  } // maks
+
+Array: [10 5 7 2 9 1 3 8 4 6]
+
+Det som er inni parantesene er antall operasjoner.
+
+if (a.length < 1) **Sjekker om tabellen har innhold til sammenligning (1)
+
+int m = 0;  // indeks til foreløpig største verdi ** Oppretter en hjelpevariabel (1)
+
+for (int i = 1; i < a.length; i++) // obs: starter med i = 1
+** her er det flere ting som skjer:
+-Oppretter hjelpevariable int i = 1; (1)
+-i<a.length utføres n ganger (lengden til arrayet) (n)
+-i++ inkrementerer helt til i<a.length så her får vi: (n-1)
+
+if (a[i] > a[m]) m = i;  // indeksen oppdateres 
+**Her skjer det også flere ting_
+-å lete opp indeks a[i] og a[m] tar begge 1 operasjon hver (2)
+-sammenligningen mellom arrayene tar også 1 operasjon (1)
+-i tilegg utførs m=i hver gang dette er sant og det vet vi ikke alltid så den blir: (x)
+-til sammen blir dette 2+1*x=3x
+
+alt dette blir til sammen 1+1+1+n+n-1+3(n-1)+x+1 = 5n+x
+
+Siden 10 er først i arrayet og blir satt inn i variablen ved a[0] så vil det ikke bli noen x.
+Så da blir svaret 5*10=50 grunnleggende operasjoner.
+
+3.)
+
+[1 2 3 4 5 6 7 8 9 10]
+
+her er arrayet i stigende rekkefølge og blir derfor 5*10+9=59 grunnleggende operasjoner.
+
+4.)
+
+[1 3 2 7 5 9 6 8 10 4]
+
+
+3
+7
+9
+10
+
+dette blir 4 ganger x'en blir brukt.
+
+1.1.4
+
+  public static int maks(int[] a)   // versjon 2 av maks-metoden
+  {
+    int m = 0;               // indeks til største verdi
+    int maksverdi = a[0];    // største verdi
+
+    for (int i = 1; i < a.length; i++) if (a[i] > maksverdi)
+    {
+      maksverdi = a[i];     // største verdi oppdateres
+      m = i;                // indeks til største verdi oppdateres
+    }
+    return m;   // returnerer indeks/posisjonen til største verdi
+
+  } // maks
+
+i.)
+
+Array: [10 5 7 2 9 1 3 8 4 6]
